@@ -32,8 +32,8 @@ GET /index.html HTTP/1.0
 
 ## My experience with this project
 
-This project marks my second experience with socket programming but this one actually gave some really cool insight into how the internet and web browsers actually work behind the scenes. Same as with the last project, I chose to complete this one in Python.
+This project marks my second experience with socket programming but this one actually gave some really cool insight into how the internet and web browsers actually work behind the scenes. Same as with the last project, I chose to complete this one in Python since it was what I felt best suited this task.
 
-I really enjoyed messing around with the web server through both a web browser and the command line (via telnet), as well as experimenting with different document directories to view different web pages and images. While the implementation may not necessarily be perfect, I was able to serve up web pages through HTTP requests to a server, accomplishing the same job as web browsers.
+I really enjoyed interacting with the web server through both a web browser and the command line (via telnet), as well as experimenting with different directories to view different web pages and images. While the implementation may not necessarily be as thorough as production code in the industry, I was able to properly serve up web pages to clients when the server was met with an HTTP request. This is essentially the core functionality of a web browser, outside of parsing URLs to convert them to IP addresses.
 
-Overall, this project made me learn more about what's usually hidden out of view and changed how I view web pages. A fun project!
+Overall, this project made me learn more about what's usually hidden out of view and changed how I view web pages entirely. A fun project!

@@ -8,6 +8,7 @@ import os
 import threading
 import mimetypes
 import sys 
+from datetime import date, datetime, timezone
 
 
 HOST, PORT = 'localhost', 8080
@@ -39,6 +40,8 @@ def serve_file(client_socket, path, doc_root=DOCUMENT_ROOT):
             content = f.read()
         response = (
             f"HTTP/1.1 200 OK\r\n"
+            f"Date: {datetime.now(timezone.utc).now().strftime("%a, %d %b %Y %H:%M:%S GMT")}\r\n"
+            f"Server: Server del Serrano\r\n"
             f"Content-Type: {mimetype or 'application/octet-stream'}\r\n"
             f"Content-Length: {len(content)}\r\n"
             f"\r\n"
@@ -50,6 +53,8 @@ def serve_file(client_socket, path, doc_root=DOCUMENT_ROOT):
 def send_404(client_socket):
     response = (
         "HTTP/1.1 404 Not Found\r\n"
+        f"Date: {datetime.now(timezone.utc).now().strftime("%a, %d %b %Y %H:%M:%S GMT")}\r\n"
+        f"Server: Server del Serrano\r\n"
         "Content-Type: text/html\r\n"
         "Content-Length: 48\r\n"
         "\r\n"
@@ -60,6 +65,8 @@ def send_404(client_socket):
 def send_405(client_socket):
     response = (
         "HTTP/1.1 405 Method Not Allowed\r\n"
+        f"Date: {datetime.now(timezone.utc).now().strftime("%a, %d %b %Y %H:%M:%S GMT")}\r\n"
+        f"Server: Server del Serrano\r\n"
         "Content-Type: text/html\r\n"
         "Content-Length: 58\r\n"
         "\r\n"

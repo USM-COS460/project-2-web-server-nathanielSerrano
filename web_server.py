@@ -31,8 +31,8 @@ def handle_request(client_socket, doc_root):
         client_socket.close()
 
 def serve_file(client_socket, path, doc_root=DOCUMENT_ROOT):
-    if path == '/':
-        path = '/index.html'
+    if path.endswith('/'):
+        path += 'index.html'
     file_path = os.path.join(doc_root, path.lstrip('/'))
     if os.path.exists(file_path) and os.path.isfile(file_path):
         mimetype, _ = mimetypes.guess_type(file_path)
@@ -40,7 +40,7 @@ def serve_file(client_socket, path, doc_root=DOCUMENT_ROOT):
             content = f.read()
         response = (
             f"HTTP/1.1 200 OK\r\n"
-            f"Date: {datetime.now(timezone.utc).now().strftime("%a, %d %b %Y %H:%M:%S GMT")}\r\n"
+            f"Date: {datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")}\r\n"
             f"Server: Server del Serrano\r\n"
             f"Content-Type: {mimetype or 'application/octet-stream'}\r\n"
             f"Content-Length: {len(content)}\r\n"
@@ -53,7 +53,7 @@ def serve_file(client_socket, path, doc_root=DOCUMENT_ROOT):
 def send_404(client_socket):
     response = (
         "HTTP/1.1 404 Not Found\r\n"
-        f"Date: {datetime.now(timezone.utc).now().strftime("%a, %d %b %Y %H:%M:%S GMT")}\r\n"
+        f"Date: {datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")}\r\n"
         f"Server: Server del Serrano\r\n"
         "Content-Type: text/html\r\n"
         "Content-Length: 48\r\n"
@@ -65,7 +65,7 @@ def send_404(client_socket):
 def send_405(client_socket):
     response = (
         "HTTP/1.1 405 Method Not Allowed\r\n"
-        f"Date: {datetime.now(timezone.utc).now().strftime("%a, %d %b %Y %H:%M:%S GMT")}\r\n"
+        f"Date: {datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")}\r\n"
         f"Server: Server del Serrano\r\n"
         "Content-Type: text/html\r\n"
         "Content-Length: 58\r\n"
